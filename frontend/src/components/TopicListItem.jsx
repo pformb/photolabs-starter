@@ -8,10 +8,19 @@ const sampleDataForTopicListItem = {
   label: "Nature",
 };
 
-const TopicListItem = () => {
+const TopicListItem = (props) => {
+  const { topic } = props;
+
+  // Check if 'topic' is defined
+  if (!topic) {
+    return null; // or handle the case when 'topic' is undefined
+  }
+
+  const { slug, label } = topic; // Destructure 'topic' to get individual properties
+
   return (
     <div className="topic-list__item">
-      {/* Insert React */}
+      <span>{label}</span>
     </div>
   );
 };

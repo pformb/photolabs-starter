@@ -14,6 +14,9 @@ const PhotoListItem = (props) => {
   // Destructure 'photo' to get individual properties
   const { imageSource, username, location, profile } = photo;
 
+  // Destructure 'location' to get individual properties
+  const { city, country } = location || {};
+
   return (
     <div className="photo-list__item">
       <PhotoFavButton 

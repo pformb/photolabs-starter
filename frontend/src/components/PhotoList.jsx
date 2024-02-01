@@ -62,7 +62,7 @@ const PhotoList = () => {
   return (
     <ul className="photo-list">
       {sampleDataForPhotoList.map((photoData) => (
-        <PhotoListItem key={photoData.id} data={photoData} />
+        <PhotoListItem key={photoData.id} photo={photoData} />
       ))}
     </ul>
   );
