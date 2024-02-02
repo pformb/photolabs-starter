@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/HomeRoute.scss';
 import PhotoList from '../components/PhotoList';
-import TopNavigationBar from '../components/TopNavigationBar';
+import TopNavigation from '../components/TopNavigationBar.jsx';
 
 const HomeRoute = (props) => {
   const { topics, photos } = props;
@@ -24,7 +24,7 @@ const HomeRoute = (props) => {
 
   return (
     <div className="home-route">
-      <TopNavigationBar topics={topics} />
+      <TopNavigation topics={topics} favouritesCount={favourites.length} />
       <PhotoList photos={photos} toggleFavourite={toggleFavourite} favourites={favourites} />
     </div>
   );

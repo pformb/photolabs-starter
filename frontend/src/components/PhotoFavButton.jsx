@@ -2,11 +2,11 @@ import React from 'react';
 import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
-function PhotoFavButton({ photo, toggleFavourite, favourites }) {
-  const isSelected = favourites.includes(photo.id);
+function PhotoFavButton({ photoId, toggleFavourite, favourites }) {
+  const isSelected = favourites.includes(photoId);
 
   const handleFavButtonClick = () => {
-    toggleFavourite(photo.id);
+    toggleFavourite(photoId);
   };
 
   return (

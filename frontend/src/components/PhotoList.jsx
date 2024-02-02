@@ -1,3 +1,4 @@
+// Inside PhotoList.jsx
 import React from "react";
 import PhotoListItem from './PhotoListItem';
 import "../styles/PhotoList.scss";
@@ -10,7 +11,7 @@ const PhotoList = (props) => {
       {Array.isArray(photos) && photos.map((photoData) => (
         <PhotoListItem
           key={photoData.id}
-          photo={photoData}
+          photo={photoData}  // Pass the 'photo' prop
           toggleFavourite={toggleFavourite}
           favourites={favourites}
         />
