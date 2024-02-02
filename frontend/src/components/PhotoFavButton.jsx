@@ -1,13 +1,13 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
-function PhotoFavButton() {
-  const [isSelected, setIsSelected] = useState(false);
+function PhotoFavButton({ photo, toggleFavourite, favourites }) {
+  const isSelected = favourites.includes(photo.id);
 
-  function handleFavButtonClick() {
-    setIsSelected((prevSelected) => !prevSelected);
-  }
+  const handleFavButtonClick = () => {
+    toggleFavourite(photo.id);
+  };
 
   return (
     <div className="photo-list__fav-icon" onClick={handleFavButtonClick}>
