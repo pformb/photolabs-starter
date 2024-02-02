@@ -13,3 +13,4 @@ const FavIcon = ({displayAlert, selected}) => {
 };
 
 export default FavIcon;
+ 

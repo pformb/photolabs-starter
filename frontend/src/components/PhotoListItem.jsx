@@ -1,30 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/PhotoListItem.scss";
 import PhotoFavButton from './PhotoFavButton';
+import FavBadge from './FavBadge';
 
 const PhotoListItem = (props) => {
-  // Destructure props to get the 'photo' property
   const { photo } = props;
 
-  // Check if 'photo' is defined
   if (!photo) {
-    return null; // or handle the case when 'photo' is undefined
+    return null;
   }
 
   const { urls, user, location } = photo;
-  const { full: imageSource, regular } = urls;
+  const { full: imageSource } = urls;
   const { username, profile } = user;
-  
-
-  // Destructure 'location' to get individual properties
   const { city, country } = location;
+
+  // State to track if the photo is a favorite and show alert
+  const [isFavPhotoExist, setFavPhotoExist] = useState(false);
+
+  const handleFavButtonClick = () => {
+    // Toggle the favorite state
+    setFavPhotoExist((prev) => !prev);
+  };
 
   return (
     <div className="photo-list__item">
       <PhotoFavButton 
         photo={photo}
-        onFavButtonClick={props.onFavButtonClick}
+        onFavButtonClick={handleFavButtonClick}
       />
+      {isFavPhotoExist && <FavBadge isFavPhotoExist={isFavPhotoExist} />}
       <img src={imageSource} alt={`Photo by ${username}`} className="photo-list__image"/>
       <img src={profile} alt={`${username}'s profile`} className="photo-list__user-profile" />
       <div className="photo-list__user-details">
