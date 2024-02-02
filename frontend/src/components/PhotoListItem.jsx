@@ -11,11 +11,13 @@ const PhotoListItem = (props) => {
     return null; // or handle the case when 'photo' is undefined
   }
 
-  // Destructure 'photo' to get individual properties
-  const { imageSource, username, location, profile } = photo;
+  const { urls, user, location } = photo;
+  const { full: imageSource, regular } = urls;
+  const { username, profile } = user;
+  
 
   // Destructure 'location' to get individual properties
-  const { city, country } = location || {};
+  const { city, country } = location;
 
   return (
     <div className="photo-list__item">

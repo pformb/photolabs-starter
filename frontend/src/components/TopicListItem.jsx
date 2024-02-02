@@ -2,12 +2,6 @@ import React from "react";
 
 import "../styles/TopicListItem.scss";
 
-const sampleDataForTopicListItem = {
-  id: "1",
-  slug: "topic-1",
-  label: "Nature",
-};
-
 const TopicListItem = (props) => {
   const { topic } = props;
 
@@ -16,11 +10,11 @@ const TopicListItem = (props) => {
     return null; // or handle the case when 'topic' is undefined
   }
 
-  const { slug, label } = topic; // Destructure 'topic' to get individual properties
+  const { slug, title } = topic; // Destructure 'topic' to get individual properties
 
   return (
     <div className="topic-list__item">
-      <span>{label}</span>
+      <span>{title}</span>
     </div>
   );
 };
