@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import '../styles/HomeRoute.scss';
 import PhotoList from '../components/PhotoList';
 import TopNavigation from '../components/TopNavigationBar.jsx';
+import PhotoDetailsModal from './PhotoDetailsModal';
 
 const HomeRoute = (props) => {
   const { topics, photos } = props;
 
   // State to manage favorite photos globally
   const [favourites, setFavourites] = useState([]);
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
 
   // Function to toggle the favorite state of a photo
   const toggleFavourite = (photoId) => {
@@ -22,10 +24,19 @@ const HomeRoute = (props) => {
     });
   };
 
+  const handleImageClick = (photo) => {
+    setSelectedPhoto(photo);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedPhoto(null);
+  };
+
   return (
     <div className="home-route">
       <TopNavigation topics={topics} favouritesCount={favourites.length} />
-      <PhotoList photos={photos} toggleFavourite={toggleFavourite} favourites={favourites} />
+      <PhotoList photos={photos} toggleFavourite={toggleFavourite} favourites={favourites} onImageClick={handleImageClick} />
+      <PhotoDetailsModal photo={selectedPhoto} onCloseModal={handleCloseModal} />
     </div>
   );
 };

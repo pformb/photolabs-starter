@@ -1,16 +1,25 @@
+// PhotoDetailsModal.jsx
 import React from 'react';
+import '../styles/PhotoDetailsModal.scss';
 
-import '../styles/PhotoDetailsModal.scss'
-import closeSymbol from '../assets/closeSymbol.svg';
+const PhotoDetailsModal = ({ photo, onCloseModal }) => {
+  if (!photo) {
+    return null;
+  }
 
-const PhotoDetailsModal = () => {
+  const { id, urls, user, location } = photo;
+  const { full: imageSource } = urls;
+  const { username } = user;
+
   return (
     <div className="photo-details-modal">
-      <button className="photo-details-modal__close-button">
-        <img src={closeSymbol} alt="close symbol" />
-      </button>
+      <div className="modal-content">
+        <span className="close-button" onClick={onCloseModal}>&times;</span>
+        <img src={imageSource} alt={`Photo by ${username}`} className="modal-image" />
+        {/* Add other photo details here */}
+      </div>
     </div>
-  )
+  );
 };
 
 export default PhotoDetailsModal;
