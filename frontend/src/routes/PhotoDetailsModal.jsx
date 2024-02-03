@@ -1,6 +1,7 @@
 // PhotoDetailsModal.jsx
 import React from 'react';
 import '../styles/PhotoDetailsModal.scss';
+import closeSymbol from '../assets/closeSymbol.svg';
 
 const PhotoDetailsModal = ({ photo, onCloseModal }) => {
   if (!photo) {
@@ -13,12 +14,12 @@ const PhotoDetailsModal = ({ photo, onCloseModal }) => {
 
   return (
     <div className="photo-details-modal">
-      <div className="modal-content">
-        <span className="close-button" onClick={onCloseModal}>&times;</span>
-        <img src={imageSource} alt={`Photo by ${username}`} className="modal-image" />
+      <button className="photo-details-modal__close-button">
+        <img src={closeSymbol} alt="close symbol" onClick={onCloseModal} />
+      </button>
+        <img src={imageSource} alt={`Photo by ${username}`} />
         {/* Add other photo details here */}
       </div>
-    </div>
   );
 };
 
