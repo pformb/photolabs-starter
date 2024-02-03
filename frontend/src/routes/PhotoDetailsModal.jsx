@@ -12,12 +12,16 @@ const PhotoDetailsModal = ({ photo, onCloseModal }) => {
   const { full: imageSource } = urls;
   const { username } = user;
 
+  console.log(photo)
+  console.log(urls)
+  console.log(user)
+
   return (
     <div className="photo-details-modal">
-      <button className="photo-details-modal__close-button">
-        <img src={closeSymbol} alt="close symbol" onClick={onCloseModal} />
+      <button className="photo-details-modal__close-button" onClick={onCloseModal}>
+        <img src={closeSymbol} alt="close symbol" />
       </button>
-        <img src={imageSource} alt={`Photo by ${username}`} />
+        <img src={imageSource} alt={`Photo by ${username}`} className="photo-details-modal__image" />
         {/* Add other photo details here */}
       </div>
   );
