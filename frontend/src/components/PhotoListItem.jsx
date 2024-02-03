@@ -3,8 +3,7 @@ import "../styles/PhotoListItem.scss";
 import PhotoFavButton from './PhotoFavButton';
 
 const PhotoListItem = (props) => {
-  const { photo, toggleFavourite, favourites, onImageClick } = props;
-
+  const { photo, toggleFavourite, favourites, handleImageClick } = props;
 
   if (!photo) {
     return <div>Loading...</div>; // or render a placeholder
@@ -13,11 +12,6 @@ const PhotoListItem = (props) => {
   const { id, urls, user, location } = photo;
   const { full: imageSource } = urls;
   const { username, profile } = user;
-
-  const handleImageClick = () => {
-    onImageClick(photo);
-  };
-
 
   return (
     <div className="photo-list__item">
@@ -30,7 +24,7 @@ const PhotoListItem = (props) => {
         src={imageSource}
         alt={`Photo by ${username}`}
         className="photo-list__image"
-        onClick={handleImageClick}
+        onClick={() => handleImageClick(photo)}
       />
       <img
         src={profile}
