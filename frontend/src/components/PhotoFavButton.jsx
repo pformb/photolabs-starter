@@ -3,7 +3,6 @@ import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
 function PhotoFavButton({ photoId, toggleFavourite, favourites }) {
-  console.log(`photoID:`, photoId);
   
   return (
     <div className="photo-list__fav-icon" onClick={() => toggleFavourite(photoId)}>

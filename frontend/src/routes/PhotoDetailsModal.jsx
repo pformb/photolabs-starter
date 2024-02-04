@@ -7,8 +7,6 @@ import PhotoFavButton from '../components/PhotoFavButton';
 
 const PhotoDetailsModal = ({ photo, onCloseModal, favourites, toggleFavourite }) => {
 
-  console.log(`favourites:`, favourites);
-
   if (!photo) {
     return null;
   }
@@ -20,43 +18,59 @@ const PhotoDetailsModal = ({ photo, onCloseModal, favourites, toggleFavourite })
 
   const simPhotos = Object.values(similar_photos);
 
-  console.log(`simPhotos:`, simPhotos);
-
-
   return (
     <div className="photo-details-modal">
       
-      <button className="photo-details-modal__close-button" onClick={onCloseModal}>
-        <img src={closeSymbol} alt="close symbol" />
-      </button>
-
-      <div className="photo-list__item">
+      <div className='photo-details-modal__top-bar'>
+          <button 
+          className="photo-details-modal__close-button" 
+          onClick={onCloseModal}>
+          <img 
+          src={closeSymbol} 
+          alt="close symbol" />
+          </button >
+        </div>
+      
+      <div className="photo-details-modal__images">
+      
       <PhotoFavButton
         photoId={id}
         toggleFavourite={toggleFavourite}
         favourites={favourites}
       />
-      </div>
         <img 
+        className='photo-details-modal__image'
         src={imageSource} 
         alt={`Photo by ${username}`} 
-        className="photo-details-modal__image" />
-       <div className="photo-details-modal__header">
+         />
+
+<div className='photo-details-modal__photographer-details'> 
+
        <img
-        src={profile}
-        alt={`${username}'s profile`}
-        className="photo-details-modal__photographer-profile"
+      className="photo-details-modal__photographer-profile"
+      src={profile}
       />
-        <p className="photo-list__user-info">{username}</p>
+      <div className="photo-list__user-info">
+        <span >{username}</span>
+        <div className="photo-details-modal__photographer-location">
         {location && (
-          <p className="photo-details-modal__photographer-location">
-            {location.city}, {location.country}
-          </p>
+        <span> {location.city}, {location.country}</span>
         )}
+        </div>
       </div>
-      <p>Similar Photos</p>
-      <div className="photo-details-modal__images">
-      <PhotoList photos={simPhotos} />
+    </div>
+  </div>
+
+  <br></br>
+      
+  <div className="photo-details-modal__images">
+      <strong>Similar Photos</strong>
+      <div>
+      <PhotoList 
+      photos={simPhotos}
+      favourites={favourites}
+      toggleFavourite={toggleFavourite}/>
+      </div>
       </div>
       </div>
   );
