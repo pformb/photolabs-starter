@@ -1,50 +1,29 @@
-import React, { useState } from 'react';
-import './App.scss';
+import React from 'react';
+import { useApplicationData } from '../src/hooks/useApplicationData.js';
 import HomeRoute from './routes/HomeRoute';
+import PhotoDetailsModal from './routes/PhotoDetailsModal';
 import photos from './mocks/photos.js';
 import topics from './mocks/topics.js';
-import PhotoDetailsModal from './routes/PhotoDetailsModal';
 
 const App = () => {
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
-  const [favourites, setFavourites] = useState([]);
-  
+  const { state, toggleFavourite, toggleModal, handleImageClick, handleCloseModal } = useApplicationData();
 
-    // Function to toggle the favorite state of a photo
-    const toggleFavourite = (photoId) => {
-      setFavourites((prevFavourites) => {
-        if (prevFavourites.includes(photoId)) {
-          // If the photo is already in favorites, remove it
-          return prevFavourites.filter((id) => id !== photoId);
-        } else {
-          // If the photo is not in favorites, add it
-          return [...prevFavourites, photoId];
-        }
-      });
-    };
-
-  const handleImageClick = (photo) => {
-    setSelectedPhoto(photo);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedPhoto(null);
-  };
 
   return (
     <div className="App">
-      <HomeRoute 
-      photos={photos} 
-      topics={topics} 
-      favourites={favourites} 
-      toggleFavourite={toggleFavourite}
-      photo={selectedPhoto}
-      handleImageClick={handleImageClick} />
-      {selectedPhoto && (
+      <HomeRoute
+        photos={photos}
+        topics={topics}
+        favourites={state.favorites}
+        toggleFavourite={toggleFavourite}
+        photo={state.selectedPhoto}
+        handleImageClick={handleImageClick}
+      />
+      {state.displayModal && (
         <PhotoDetailsModal
-          photo={selectedPhoto}
+          photo={state.selectedPhoto}
           onCloseModal={handleCloseModal}
-          favourites={favourites} 
+          favourites={state.favorites}
           toggleFavourite={toggleFavourite}
         />
       )}
