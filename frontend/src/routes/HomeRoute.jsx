@@ -4,7 +4,7 @@ import PhotoList from '../components/PhotoList';
 import TopNavigation from '../components/TopNavigationBar.jsx';
 
 const HomeRoute = (props) => {
-  const { topics, photos, favourites, toggleFavourite, handleImageClick } = props;
+  const { topics, favourites, toggleFavourite, handleImageClick, photos } = props;
 
   return (
     <div className="home-route">

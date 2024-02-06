@@ -2,8 +2,6 @@ import React from 'react';
 import { useApplicationData } from '../src/hooks/useApplicationData.js';
 import HomeRoute from './routes/HomeRoute';
 import PhotoDetailsModal from './routes/PhotoDetailsModal';
-import photos from './mocks/photos.js';
-import topics from './mocks/topics.js';
 
 const App = () => {
   const { state, toggleFavourite, toggleModal, handleImageClick, handleCloseModal } = useApplicationData();
@@ -12,8 +10,8 @@ const App = () => {
   return (
     <div className="App">
       <HomeRoute
-        photos={photos}
-        topics={topics}
+        photos={state.hasFavorites ? state.favorites : state.photoData}
+        topics={state.topicData}
         favourites={state.favorites}
         toggleFavourite={toggleFavourite}
         photo={state.selectedPhoto}
