@@ -2,6 +2,7 @@ import React from 'react';
 import { useApplicationData } from '../src/hooks/useApplicationData.js';
 import HomeRoute from './routes/HomeRoute';
 import PhotoDetailsModal from './routes/PhotoDetailsModal';
+import './App.scss';
 
 const App = () => {
   const { 
@@ -9,7 +10,8 @@ const App = () => {
     toggleFavourite, 
     handleImageClick, 
     handleCloseModal,
-    photosByTopic
+    photosByTopic,
+    returnHome
   } = useApplicationData();
 
 
@@ -23,6 +25,7 @@ const App = () => {
         photo={state.selectedPhoto}
         photosByTopic={photosByTopic}
         handleImageClick={handleImageClick}
+        returnHome={returnHome} 
       />
       {state.displayModal && (
         <PhotoDetailsModal
