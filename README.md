@@ -1,4 +1,4 @@
-# Welcome to Photolabs!
+# Photolabs
 Photolabs is a project created with Create-React-App to help myself learn how to develop skills using React's framework and its associated tools like useReducer, and useEffect. The project allows users to view a gallery of images and save their favorites for later viewing.
 
 ## Installation and Setup
