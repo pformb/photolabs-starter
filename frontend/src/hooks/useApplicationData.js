@@ -1,4 +1,4 @@
-import { useReducer, useEffect } from 'react';
+import { useReducer, useEffect, useRef } from "react";
 
 const initialState = {
   favorites: [],
@@ -15,7 +15,8 @@ const ACTIONS = {
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   OPEN_MODAL: 'OPEN_MODAL',
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
-  CLOSE_MODAL: 'CLOSE_MODAL'
+  CLOSE_MODAL: 'CLOSE_MODAL',
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
 }
 
 function reducer(state, action) {
@@ -36,6 +37,9 @@ function reducer(state, action) {
 
       case ACTIONS.SET_TOPIC_DATA:
       return {...state, topicData: action.payload}
+
+      case ACTIONS.GET_PHOTOS_BY_TOPICS:
+      return {...state, photoData: action.payload}
         
         default:
           throw new Error(
@@ -61,6 +65,13 @@ export const useApplicationData =() => {
     .then((data) => { dispatch({type: ACTIONS.SET_TOPIC_DATA, payload: data})
     })
   }, [])
+
+function photosByTopic(topic_id) {
+  fetch(`http://localhost:8001/api/topics/photos/${topic_id}`)
+  .then((res) => res.json())
+  .then((data) => { dispatch({type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data})
+  })
+}
   
   function toggleFavourite(id) {
       if (state.favorites.includes(id)) {
@@ -93,6 +104,7 @@ export const useApplicationData =() => {
     handleImageClick,
     handleCloseModal,
     state,
+    photosByTopic,
   };
 };
 

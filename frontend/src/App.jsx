@@ -4,7 +4,13 @@ import HomeRoute from './routes/HomeRoute';
 import PhotoDetailsModal from './routes/PhotoDetailsModal';
 
 const App = () => {
-  const { state, toggleFavourite, toggleModal, handleImageClick, handleCloseModal } = useApplicationData();
+  const { 
+    state, 
+    toggleFavourite, 
+    handleImageClick, 
+    handleCloseModal,
+    photosByTopic
+  } = useApplicationData();
 
 
   return (
@@ -15,6 +21,7 @@ const App = () => {
         favourites={state.favorites}
         toggleFavourite={toggleFavourite}
         photo={state.selectedPhoto}
+        photosByTopic={photosByTopic}
         handleImageClick={handleImageClick}
       />
       {state.displayModal && (

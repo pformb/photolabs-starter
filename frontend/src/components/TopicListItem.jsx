@@ -3,7 +3,7 @@ import React from "react";
 import "../styles/TopicListItem.scss";
 
 const TopicListItem = (props) => {
-  const { topic } = props;
+  const { topic, photosByTopic } = props;
 
   // Check if 'topic' is defined
   if (!topic) {
@@ -14,7 +14,7 @@ const TopicListItem = (props) => {
 
   return (
     <div className="topic-list__item">
-      <span>{title}</span>
+      <span onClick={() => photosByTopic(topic.id)}>{title}</span>
     </div>
   );
 };
